@@ -1,38 +1,48 @@
 'use strict';
 
-const options = {
-    name: 'test',
-    width: 1024,
-    height: 1024,
-    colors: {
-        border: 'black',
-        bg: 'red'
-    },
-    makeTest: function(){
-        console.log('Test');
-    }
-};
+const arr = [10, 222, 31, 13, 5, 6, 7];
 
-options.makeTest();
+arr.sort(compareNum);
 
-console.log(options.colors.bg);
+console.log(arr);
 
-const {border, bg} = options.colors; //destructurization
-console.log(border);
-
-// delete options.name;
-
-// console.log(options);
-
-for (let key in options) {
-    if (typeof options[key] == 'object'){
-        for (let key1 in options[key]){
-            console.log(`Свойство ${key1} имеет значение ${options[key][key1]}`);
-        }
-    } else {
-        console.log(`Свойство ${key} имеет значение ${options[key]}`);
-    }
-    
+function compareNum(a, b) {
+    console.log(a, 'A');
+    console.log(b, 'B');
+    console.log('----');
+    return a - b;
 }
 
-console.log(Object.keys(options).length);
+// console.log(arr.pop());
+// console.log(arr);
+
+arr.forEach(function (item, i, arr) {
+    console.log(`${i}: ${item}: ${arr}`);
+})
+
+console.log(arr.filter(item => item % 2 == 0));
+
+console.log(arr.map(item => item * 2));
+
+const str = prompt('', '');
+const products = str.split(',');
+products.sort();
+console.log(products.join('; '));
+
+function binary (arr, a) {
+    let low = 0; 
+    let high = arr.length - 1;
+
+    while (low <= high) {
+        let mid = parseInt((low + high) / 2);
+        if (arr[mid] === a) { return mid; }
+        if (arr[mid]> a) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return null;
+}
+
+console.log(binary([ 1, 3, 5, 7, 9], 7));
